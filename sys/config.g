@@ -62,10 +62,13 @@ M305 P0 T100000 B3794 R4700 H30 L0	;Thermistor.
 M570 S180				; hotend warmup wait time
 
 ; Extruder Thermistors, hexagon hotend "104NT-4-R025H42G". The "P" parameter does NOT follow the tool numbering.
+;Duet 0.85, 4.7k resistors.
 M305 P1 T100000 B4267 R4700 H30 L0
 M305 P2 T100000 B4267 R4700 H30 L0
-M305 P3 T100000 B4267 R4700 H30 L0
-M305 P4 T100000 B4267 R4700 H30 L0
+
+;Duex 4, 1k resistors.
+M305 P3 T100000 B4267 R1000 H30 L0
+M305 P4 T100000 B4267 R1000 H30 L0
 
 ; Extruder Steppers.
 M906 E1500:1500:1500:1500		; Extruder motor current.
