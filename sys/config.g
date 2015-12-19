@@ -49,7 +49,7 @@ G31 X0 Y0 Z1.0 C0 P500		; Probe at X0/Y0, no Z temperature coefficient, Z=1 when
 
 M208 X670 Y375 Z165	; default max travel
 
-;M106 I1			; "invert" fans (S2=min, S253=full)
+M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
 ;----------
 ;Heated bed configuration.
