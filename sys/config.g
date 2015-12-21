@@ -47,7 +47,7 @@ G31 X0 Y0 Z1.0 C0 P500		; Probe at X0/Y0, no Z temperature coefficient, Z=1 when
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
-M208 X670 Y375 Z165	; default max travel
+M208 X365 Y375 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
 
 M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
@@ -67,8 +67,8 @@ M305 P1 T100000 B4267 R4700 H30 L0
 M305 P2 T100000 B4267 R4700 H30 L0
 
 ;Duex 4, 1k resistors.
-M305 P3 T100000 B4267 R1000 H30 L0
-M305 P4 T100000 B4267 R1000 H30 L0
+M305 P3 T100000 B4267 R1000 H37 L0
+M305 P4 T100000 B4267 R1000 H37 L0
 
 ; Extruder Steppers.
 M906 E1500:1500:1500:1500		; Extruder motor current.
