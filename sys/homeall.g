@@ -12,3 +12,6 @@ G28 Z
 
 ;Approximately center tools, prevent Z-axis shifting.
 G1 X200 F5100 S0
+
+;Move Y-axis tooling out of the way for safety.
+G0 Y225 F5100 S0
