@@ -78,16 +78,20 @@ M203 E:2500:2500:2500:2500		; speed
 
 ; Extruder Tool Definitions
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
-G10 P0 X0 Y0 Z0 S0 R0			; tool 0, standbyTemp 0, runTemp 0
+M301 H1 P15 I0.25 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
+G10 P0 X0 Y0 Z0 R80 S165		; tool 0, standbyTemp 125, runTemp 165 (defaults)
 
 M563 P1 D1 H2
-G10 P1 X0 Y0 Z0 S0 R0
+M301 H2 P15 I0.25 D100
+G10 P1 X0 Y0 Z0 R80 S165
 
 M563 P2 D2 H3
-G10 P2 X0 Y0 Z0 S0 R0
+M301 H3 P15 I0.25 D100
+G10 P2 X0 Y0 Z0 R80 S165
 
 M563 P3 D3 H4
-G10 P3 X0 Y0 Z0 S0 R0
+M301 H4 P15 I0.25 D100
+G10 P3 X0 Y0 Z0 R80 S165
 
 M106 P1 S0 ; Part cooling fan off.
 
