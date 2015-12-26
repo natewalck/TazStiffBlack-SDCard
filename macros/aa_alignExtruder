@@ -1,1 +1,10 @@
+;Ensures all extruders have negative coordinates, with the probe at origin.
+
+G31 C0 P500 X0 Y0 Z1.3
+G10 P0 R80 S165 X-50.6 Y-38.1 Z0
+G10 P1 R80 S165 X-118.1 Y-15.65 Z0
+G10 P2 R80 S165 X-52.35 Y-139.45 Z0
+G10 P3 R80 S165 X-116.35 Y-136.85 Z0
+G10 P4 R-273.15 S-273.15 X69.2 Y-4.85 Z0
+G10 P5 R-273.15 S-273.15 X-207.6 Y4.8 Z0
  

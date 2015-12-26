@@ -13,8 +13,8 @@
 ;Xcenter=132.5
 ;Ycenter=182.5
 
+T99	;Non-existant tool, no offset.
 M561	;Zero existing compensation.
-G31 X0 Y0 Z1.3 C0 P500		; Probe at X0/Y0, no Z temperature coefficient, Z=1 when probe=500.
 
 G0 Z25
 G0 X132.5 Y182.5

@@ -43,7 +43,7 @@ M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
 M558 P1 X0 Y0 Z1
-G31 X-20 Y5 Z1.0 C0 P500		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
+G31 C0 P500 X0 Y0 Z1.3		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
@@ -79,19 +79,19 @@ M203 E:2500:2500:2500:2500		; speed
 ; Extruder Tool Definitions
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
 M301 H1 P15 I0.25 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
-G10 P0 R80 S165 X-70.6 Y-33.1 Z0	; tool 0, standbyTemp 125, runTemp 165 (defaults)
+G10 P0 R80 S165 X-50.6 Y-38.1 Z0	; tool 0, standbyTemp 125, runTemp 165 (defaults)
 
 M563 P1 D1 H2
 M301 H2 P15 I0.25 D100
-G10 P1 R80 S165 X-138.1 Y-10.65 Z0
+G10 P1 R80 S165 X-118.1 Y-15.65 Z0
 
 M563 P2 D2 H3
 M301 H3 P15 I0.25 D100
-G10 P2 R80 S165 X-72.35 Y-134.45 Z0
+G10 P2 R80 S165 X-52.35 Y-139.45 Z0
 
 M563 P3 D3 H4
 M301 H4 P15 I0.25 D100
-G10 P3 R80 S165 X-136.35 Y-131.85 Z0
+G10 P3 R80 S165 X-116.35 Y-136.85 Z0
 
 M106 P1 S0 ; Part cooling fan off.
 
@@ -100,12 +100,12 @@ M106 P1 S0 ; Part cooling fan off.
 
 ;Laser. No heater, unused drive.
 M563 P4 D4
-G10 P4 X49.2 Y0.15 Z0 R-273.15 S-273.15
+G10 P4 R-273.15 S-273.15 X69.2 Y-4.85 Z0
 M106 P0 S0 ; Laser power off.
 
 ;CNC Spindle. No heater, unused drive.
 M563 P5 D5
-G10 P5 X-227.6 Y9.8 Z0 R-273.15 S-273.15
+G10 P5 R-273.15 S-273.15 X-207.6 Y4.8 Z0
 
 
 
