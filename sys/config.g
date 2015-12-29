@@ -74,7 +74,15 @@ M305 P4 T100000 B4267 R1000 H37 L0
 M906 E1500:1500:1500:1500		; Extruder motor current.
 M92 E968:866:866:866			; steps/mm, first extruder is flexystruder
 M201 E2000:2000:2000:2000		; acceleration
-M203 E:2500:2500:2500:2500		; speed
+M203 E:150:150:150:150:150		; speed
+
+; Extruder stepper directions.
+M569 P3 S1
+M569 P4 S1
+M569 P5 S1
+M569 P6 S1
+M569 P7 S1
+M569 P8 S1
 
 ; Extruder Tool Definitions
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
@@ -89,7 +97,8 @@ M563 P2 D2 H3
 M301 H3 P15 I0.25 D100
 G10 P2 R80 S165 X-52.35 Y-139.45 Z0
 
-M563 P3 D3 H4
+;M563 P3 D3 H4
+M563 P3 D5 H4	;Swap drive to accomodate degraded chip.
 M301 H4 P15 I0.25 D100
 G10 P3 R80 S165 X-116.35 Y-136.85 Z0
 
@@ -104,7 +113,8 @@ G10 P4 R-273.15 S-273.15 X69.2 Y-4.85 Z0
 M106 P0 S0 ; Laser power off.
 
 ;CNC Spindle. No heater, unused drive.
-M563 P5 D5
+;M563 P5 D5
+M563 P5 D3	;Swap drive to accomodate degraded chip.
 G10 P5 R-273.15 S-273.15 X-207.6 Y4.8 Z0
 
 
