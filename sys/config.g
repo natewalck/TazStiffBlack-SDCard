@@ -74,15 +74,16 @@ M305 P4 T100000 B4267 R1000 H37 L0
 M906 E1500:1500:1500:1500		; Extruder motor current.
 M92 E968:866:866:866			; steps/mm, first extruder is flexystruder
 M201 E2000:2000:2000:2000		; acceleration
-M203 E:150:150:150:150:150		; speed
+;M203 E:50:50:50:50			; speed
+M203 E:2000:2000:2000:2000			; speed - allow fast retraction
 
-; Extruder stepper directions.
-M569 P3 S1
-M569 P4 S1
-M569 P5 S1
-M569 P6 S1
-M569 P7 S1
-M569 P8 S1
+;Extruder Stepper Direction.
+M569 P3 S0
+M569 P4 S0
+M569 P5 S0
+M569 P6 S0
+M569 P7 S0
+M569 P8 S0
 
 ; Extruder Tool Definitions
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
