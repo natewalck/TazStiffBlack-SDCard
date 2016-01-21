@@ -120,7 +120,11 @@ M563 P5 D3	;Swap drive to accomodate degraded chip.
 
 
 ;Tool/probe definitions based on spreadsheet alignment data.
-G31 C0 P500 X40.8 Y8.7 Z0.35
+;G31 C0 P500 X40.8 Y8.7 Z1.5					;@35C
+;G31 C0 P500 X40.8 Y8.7 Z1.675					;@120C
+
+G31 C0.0035 P500 X40.8 Y8.7 Z1.45				;@0C
+
 G10 P0 R80 S165 X-51.985 Y-0.48 Z0
 G10 P1 R80 S165 X-73.79 Y-0.87 Z0
 G10 P2 R80 S165 X-96.15 Y-0.9 Z0
