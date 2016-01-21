@@ -24,13 +24,16 @@ G30 P2 Z-10000
 
 G0 Z25
 M98 P/macros/cf_bottomLeft
-G30 P3 S0 Z-10000
+;G30 P3 S0 Z-10000	;Calibrate with same number of factors as points probed.
+;G30 P3 S4 Z-10000	;Four factor calibration.
+G30 P3 S3 Z-10000	;Three factor calibration.
+;G30 P3 S-1 Z-10000	;Simply report coordinates.
 
 ;Pause for UI.
-;G4 P1500
+G4 P1500
 
 ;Return to safe position.
-;G0 Z25
-;M98 P/macros/cb_center
+G0 Z25
+M98 P/macros/cb_center
 
 
