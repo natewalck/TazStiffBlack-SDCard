@@ -43,11 +43,11 @@ M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
 M558 P1 X0 Y0 Z1
-G31 C0 P500 X0 Y0 Z1.3		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
+;G31 C0 P500 X0 Y0 Z1		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
-M208 X365 Y375 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
+M208 X555 Y375 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
 
 M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
@@ -88,20 +88,20 @@ M569 P8 S0
 ; Extruder Tool Definitions
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
 M301 H1 P15 I0.25 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
-G10 P0 R80 S165 X-50.6 Y-38.1 Z0	; tool 0, standbyTemp 125, runTemp 165 (defaults)
+;G10 P0 R80 S165 X-50.6 Y-38.1 Z0	; tool 0, standbyTemp 125, runTemp 165 (defaults)
 
 M563 P1 D1 H2
 M301 H2 P15 I0.25 D100
-G10 P1 R80 S165 X-118.1 Y-15.65 Z0
+;G10 P1 R80 S165 X-118.1 Y-15.65 Z0
 
 M563 P2 D2 H3
 M301 H3 P15 I0.25 D100
-G10 P2 R80 S165 X-52.35 Y-139.45 Z0
+;G10 P2 R80 S165 X-52.35 Y-139.45 Z0
 
 ;M563 P3 D3 H4
 M563 P3 D5 H4	;Swap drive to accomodate degraded chip.
 M301 H4 P15 I0.25 D100
-G10 P3 R80 S165 X-116.35 Y-136.85 Z0
+;G10 P3 R80 S165 X-116.35 Y-136.85 Z0
 
 M106 P1 S0 ; Part cooling fan off.
 
@@ -110,13 +110,23 @@ M106 P1 S0 ; Part cooling fan off.
 
 ;Laser. No heater, unused drive.
 M563 P4 D4
-G10 P4 R-273.15 S-273.15 X69.2 Y-4.85 Z0
+;G10 P4 R-273.15 S-273.15 X69.2 Y-4.85 Z0
 M106 P0 S0 ; Laser power off.
 
 ;CNC Spindle. No heater, unused drive.
 ;M563 P5 D5
 M563 P5 D3	;Swap drive to accomodate degraded chip.
-G10 P5 R-273.15 S-273.15 X-207.6 Y4.8 Z0
+;G10 P5 R-273.15 S-273.15 X-207.6 Y4.8 Z0
+
+
+;Tool/probe definitions based on spreadsheet alignment data.
+G31 C0 P500 X40.8 Y8.7 Z0.35
+G10 P0 R80 S165 X-51.985 Y-0.48 Z0
+G10 P1 R80 S165 X-73.79 Y-0.87 Z0
+G10 P2 R80 S165 X-96.15 Y-0.9 Z0
+G10 P3 R80 S165 X-118.45 Y-0.9 Z0
+G10 P4 R-273.15 S-273.15 X-89.1 Y-62.1 Z0
+G10 P5 R-273.15 S-273.15 X-0.35 Y-47.2 Z0
 
 
 

@@ -1,39 +1,29 @@
 ;Run by G32
 
-;Ztable<=5
-
 ;Zsafe>=25
-
-;Xmin=0
-;Xmax=265
-
-;Ymin=50
-;Ymax=315
-
-;Xcenter=132.5
-;Ycenter=182.5
 
 T99	;Non-existant tool, no offset.
 M561	;Zero existing compensation.
 
+;Goto Center. Unlike other points, this should include compensation for probe X/Y coordinates.
 G0 Z25
-G0 X132.5 Y182.5
+G0 X213.2 Y135.3
 G30
 
 G0 Z25
-G0 X0 Y50
+M98 P/macros/cc_topLeft
 G30 P0 Z-10000
 
 G0 Z25
-G0 X0 Y315
+M98 P/macros/cd_topRight
 G30 P1 Z-10000
 
 G0 Z25
-G0 X265 Y315
+M98 P/macros/ce_bottomRight
 G30 P2 Z-10000
 
 G0 Z25
-G0 X265 Y50
+M98 P/macros/cf_bottomLeft
 G30 P3 S0 Z-10000
 
 ;Pause for UI.
