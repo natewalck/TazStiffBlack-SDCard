@@ -27,10 +27,10 @@ M98 P/macros/cf_bottomLeft
 G30 P3 S0 Z-10000
 
 ;Pause for UI.
-G4 P1500
+;G4 P1500
 
 ;Return to safe position.
-G0 Z25
-G0 X200 Y225
+;G0 Z25
+;M98 P/macros/cb_center
 
 
