@@ -87,20 +87,20 @@ M569 P8 S0
 
 ; Extruder Tool Definitions
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
-M301 H1 P15 I0.25 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
+M301 H1 P35 I0.25 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
 ;G10 P0 R80 S165 X-50.6 Y-38.1 Z0	; tool 0, standbyTemp 125, runTemp 165 (defaults)
 
 M563 P1 D1 H2
-M301 H2 P15 I0.25 D100
+M301 H2 P35 I0.25 D100
 ;G10 P1 R80 S165 X-118.1 Y-15.65 Z0
 
 M563 P2 D2 H3
-M301 H3 P15 I0.25 D100
+M301 H3 P35 I0.25 D100
 ;G10 P2 R80 S165 X-52.35 Y-139.45 Z0
 
 ;M563 P3 D3 H4
 M563 P3 D5 H4	;Swap drive to accomodate degraded chip.
-M301 H4 P15 I0.25 D100
+M301 H4 P35 I0.25 D100
 ;G10 P3 R80 S165 X-116.35 Y-136.85 Z0
 
 M106 P1 S0 ; Part cooling fan off.

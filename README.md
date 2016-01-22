@@ -8,3 +8,5 @@ https://reprappro.com/documentation/ormerod-2/axis-compensation/
 http://forums.reprap.org/read.php?340,503215
 
 http://reprap.org/wiki/Hexagon
+
+https://en.wikipedia.org/wiki/PID_controller#Manual_tuning
