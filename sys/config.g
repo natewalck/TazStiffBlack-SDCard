@@ -35,7 +35,7 @@ M906 I95				; IDLE motor current percentage (100=full)
 M84 S0					; NEVER timeout stepper motors
 M85 S0					; NEVER timeout stepper motors
 
-M201 X1250 Y1250 Z25			; Max acceleration.
+M201 X1250 Y1250 Z25			; Max acceleration. Tested limits: X10000 Y5000
 M203 X6000 Y6000 Z900			; Max speed. Absolute limits are X6000 Y6000 Z2700.
 
 M574 X1 Y1 Z2 S0	;Endstops.

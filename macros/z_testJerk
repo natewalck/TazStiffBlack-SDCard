@@ -1,0 +1,66 @@
+:Set speed and acceleration with G0 and M201 commands before running this test. Use to evaluate precision and wear at various settings. Do not run at maximum settings (do not test physical limits) with this script,
+
+G28 X Y
+G0 X10 Y10
+
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+G0 X10
+G0 X11
+
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
+G0 Y10
+G0 Y11
