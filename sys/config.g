@@ -30,7 +30,7 @@ M569 P0 S1 		;X Reverse
 M569 P1 S1 		;Y Reverse
 M569 P2 S0 		;Z Normal
 
-M906 X1500 Y3000 Z3000			; Set motor currents (mA)
+M906 X1500 Y1500 Z3000			; Set motor currents (mA)
 M906 I95				; IDLE motor current percentage (100=full)
 M84 S0					; NEVER timeout stepper motors
 M85 S0					; NEVER timeout stepper motors
