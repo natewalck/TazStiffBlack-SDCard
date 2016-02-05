@@ -47,7 +47,7 @@ M558 P1 X0 Y0 Z1
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
-M208 X555 Y375 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
+M208 X555 Y415 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
 
 M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
