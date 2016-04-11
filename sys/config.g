@@ -30,12 +30,13 @@ M569 P0 S1 		;X Reverse
 M569 P1 S1 		;Y Reverse
 M569 P2 S0 		;Z Normal
 
-M906 X1500 Y1500 Z3000			; Set motor currents (mA)
+M906 X1750 Y1750 Z3000			; Set motor currents (mA)
 M906 I95				; IDLE motor current percentage (100=full)
 M84 S0					; NEVER timeout stepper motors
 M85 S0					; NEVER timeout stepper motors
 
 M201 X2750 Y2750 Z25			; Max acceleration. Tested limits: X10000 Y10000
+M566 X900 Y900				; Max jerk. Tested limits: X3500 Y3500
 M203 X6000 Y6000 Z900			; Max speed. Absolute limits are X6000 Y6000 Z2700.
 
 M574 X1 Y1 Z2 S0	;Endstops.
@@ -47,7 +48,7 @@ M558 P1 X0 Y0 Z1
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
-M208 X555 Y415 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
+M208 X515 Y415 Z142	; default max travel. IMPORTANT: Z travel range permits tool crashes.
 
 M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
@@ -71,8 +72,8 @@ M305 P3 T100000 B4267 R1000 H37 L0
 M305 P4 T100000 B4267 R1000 H37 L0
 
 ; Extruder Steppers.
-M906 E1500:1500:1500:1500		; Extruder motor current.
-M92 E968:866:866:866			; steps/mm, first extruder is flexystruder
+M906 E1750:1750:1750:1750		; Extruder motor current.
+M92 E968:965:965:965			; steps/mm, first extruder is flexystruder
 M201 E2000:2000:2000:2000		; acceleration
 ;M203 E:50:50:50:50			; speed
 M203 E:2000:2000:2000:2000			; speed - allow fast retraction
@@ -87,20 +88,20 @@ M569 P8 S0
 
 ; Extruder Tool Definitions
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
-M301 H1 P35 I0.25 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
+M301 H1 P45 I0.35 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
 ;G10 P0 R80 S165 X-50.6 Y-38.1 Z0	; tool 0, standbyTemp 125, runTemp 165 (defaults)
 
 M563 P1 D1 H2
-M301 H2 P35 I0.25 D100
+M301 H2 P45 I0.35 D100
 ;G10 P1 R80 S165 X-118.1 Y-15.65 Z0
 
 M563 P2 D2 H3
-M301 H3 P35 I0.25 D100
+M301 H3 P45 I0.35 D100
 ;G10 P2 R80 S165 X-52.35 Y-139.45 Z0
 
 ;M563 P3 D3 H4
 M563 P3 D5 H4	;Swap drive to accomodate degraded chip.
-M301 H4 P35 I0.25 D100
+M301 H4 P45 I0.35 D100
 ;G10 P3 R80 S165 X-116.35 Y-136.85 Z0
 
 M106 P1 S0 ; Part cooling fan off.
@@ -123,10 +124,12 @@ M563 P5 D3	;Swap drive to accomodate degraded chip.
 ;G31 C0 P500 X40.8 Y8.7 Z1.5					;@35C
 ;G31 C0 P500 X40.8 Y8.7 Z1.675					;@120C
 
-G31 C0.0035 P500 X40.8 Y8.7 Z1.75				;@0C
+;G31 C0.0035 P500 X40.8 Y8.7 Z1.75				;@0C
+
+G31 C0.0035 P500 X-139.2 Y8.7 Z1.325
 
 G10 P0 R80 S165 X-51.985 Y-0.48 Z0
-G10 P1 R80 S165 X-73.79 Y-0.87 Z0
+G10 P1 R80 S165 X-74 Y-0.65 Z0
 G10 P2 R80 S165 X-96.15 Y-0.9 Z0
 G10 P3 R80 S165 X-118.45 Y-0.9 Z0
 G10 P4 R-273.15 S-273.15 X-89.1 Y-62.1 Z0
