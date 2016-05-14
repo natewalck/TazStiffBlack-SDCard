@@ -1,5 +1,7 @@
-G91
-G1 X-1000 F5100 S1
-G1 X3 F360 S0
-G1 X-3 F180 S1
-G90
+G91                ; relative mode
+G1 Z4 F200         ; raise head to avoid dragging nozzle over the bed
+G1 X240 F3000 S1   ; move up to 240mm in the +X direction, stopping if the homing switch is triggered
+G1 X-4 F600        ; move slowly 4mm in the -X direction
+G1 X10 S1          ; move slowly 10mm in the +X direction, stopping at the homing switch
+G1 Z-4 F200        ; lower the head again
+G90                ; back to absolute mode

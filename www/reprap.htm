@@ -1,32 +1,34 @@
 <!DOCTYPE html>
-<!--	Duet Web Control v1.06
-	
-		written by Christian Hammacher
-	
-		licensed under the terms of the GPL v2
-		see http://www.gnu.org/licenses/gpl-2.0.html
+<!--	Duet Web Control v1.11
+
+	written by Christian Hammacher
+
+	licensed under the terms of the GPL v2
+	see http://www.gnu.org/licenses/gpl-2.0.html
 -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width">
 		<meta name="description" content="Web Interface for Duet Electronics (+ Extension)">
 		<meta name="author" content="Christian Hammacher">
-		<link rel="icon" href="favicon.ico">
-		
+
 		<title id="title">Duet Web Control</title>
-		
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="favicon.ico">
 		<!-- CSS -->
+		<link href="css/animate.css" rel="stylesheet">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 		<link href="css/bootstrap-slider.min.css" rel="stylesheet">
 		<link href="css/defaults.css" rel="stylesheet">
 	</head>
-	
+
 	<body>
 		<!-- Navigation Bar -->
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Grouping for better mobile display -->
 				<div class="navbar-header collapsed">
@@ -42,13 +44,13 @@
 						</button>
 					</div>
 					<span class="label label-default label-status pull-right navbar-label visible-xs">Disconnected</span>
-					
+
 					<a class="navbar-brand visible-xs">
-						<!-- <img class="brand-sm" src="img/rrp_small.png"> -->
 						<span class="machine-name">Duet Web Control</span>
+						<abbr title="Some axes are not homed" class="hidden home-warning"><span class="glyphicon glyphicon-alert"></span></abbr>
 					</a>
 				</div>
-					
+
 				<!-- Regular navbar entries -->
 				<div class="collapse navbar-collapse">
 					<button type="button" class="btn btn-connect btn-info navbar-btn navbar-left"><span class="glyphicon glyphicon-log-in"></span> <span>Connect</span></button>
@@ -57,7 +59,7 @@
 							<span class="glyphicon glyphicon-dashboard"></span>
 						</button>
 					</div>
-					
+
 					<form class="navbar-form padding-small navbar-left hidden-sm gcode-input">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Send G-Code..." disabled>
@@ -69,33 +71,29 @@
 						</div>
 						<button type="submit" class="btn btn-default disabled" title="Send G-Code from input"><span class="glyphicon glyphicon-send"></span> Send</button>
 					</form>
-					
+
 					<button type="button" class="btn btn-default btn-upload navbar-btn padding-small navbar-left hidden-xs hidden-sm disabled" title="Upload &amp; Print one or more G-Code files (drag&amp;drop is supported as well)" data-type="print" data-style="btn-default"><span class="glyphicon glyphicon-cloud-upload"></span> Upload &amp; Print</button>
-					
+
 					<button type="button" class="btn btn-danger btn-emergency-stop navbar-btn navbar-right disabled" title="Enforces an immediate software reset (M112+M999)">Emergency STOP</button>
 					<span class="label label-default label-status navbar-label navbar-right">Disconnected</span>
-					
+
 					<ul class="nav nav-justified hidden-xs">
 						<li>
 							<a href="#" class="navbar-brand">
-							<!--
-								<img class="brand-sm" src="img/rrp_small.png">
-								<img class="brand-lg" src="img/rrp_large.png">
-								<span class="brand-lg">-</span>
-							-->
 								<span class="machine-name">Duet Web Control</span>
+								<abbr title="Some axes are not homed" class="hidden home-warning small"><span class="glyphicon glyphicon-alert"></span></abbr>
 							</a>
 						</li>
 					</ul>
 				</div>
-				
+
 				<!-- Collapsed navbar entries for mobile devices -->
 				<div class="nav collapse" id="mobile-navbar">
 					<form class="gcode-input">
 						<table class="table navbar-table">
 							<tr>
 								<td>
-									<button type="button" class="btn btn-connect btn-info"><span class="glyphicon glyphicon-log-in"></span> Connect</button>
+									<button type="button" class="btn btn-connect btn-info"><span class="glyphicon glyphicon-log-in"></span> <span>Connect</span></button>
 								</td>
 								<td>
 									<button type="button" class="btn btn-danger btn-emergency-stop pull-right disabled" title="Enforces an immediate software reset (M112+M999)">Emergency STOP</button>
@@ -124,8 +122,6 @@
 										<li role="presentation" class="navitem navitem-console"><a class="navlink" href="#" data-target="console"><span class="glyphicon glyphicon-console"></span> Console</a></li>
 										<li role="presentation" class="navitem navitem-files"><a class="navlink" href="#" data-target="files"><span class="glyphicon glyphicon-hdd"></span> Files <span class="glyphicon glyphicon-refresh span-refresh-files hidden"></span></a></li>
 										<li role="presentation" class="navitem navitem-macros"><a class="navlink" href="#" data-target="macros"><span class="glyphicon glyphicon-link"></span> Macros <span class="glyphicon glyphicon-refresh span-refresh-macros hidden"></span></a></li>
-										<li role="presentation" class="navitem navitem-spools"><a class="navlink" href="#" data-target="spools"><span class="glyphicon glyphicon-record"></span> Spools</a></li>
-										<li role="presentation" class="navitem navitem-maintenance hidden"><a class="navlink" href="#" data-target="maintenance"><span class="glyphicon glyphicon-wrench"></span> Maintenance</a></li>
 										<li role="presentation" class="navitem navitem-settings"><a class="navlink" href="#" data-target="settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 										<li role="presentation" class="navitem navitem-help hidden"><a class="navlink" href="#" data-target="help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
 									</ul>
@@ -136,7 +132,7 @@
 				</div>
 			</div>
 		</nav>
-		
+
 		<!-- Main Content -->
 		<div class="container-fluid">
 			<!-- Info Panels -->
@@ -175,7 +171,7 @@
 								</ul>
 							</div>
 						</div>
-						
+
 						<table class="table table-bordered table-condensed table-centered-cells" id="table_heaters">
 							<tr>
 								<th></th>
@@ -183,7 +179,7 @@
 								<th>Active</th>
 								<th>Standby</th>
 							</tr>
-							
+
 							<tr id="tr_head_1">
 								<th>
 									<a href="#">Heater 1<span class="caret hidden"></span></a>
@@ -211,7 +207,7 @@
 									</div>
 								</td>
 							</tr>
-							
+
 							<tr id="tr_head_2">
 								<th>
 									<a href="#">Heater 2<span class="caret hidden"></span></a>
@@ -239,7 +235,7 @@
 									</div>
 								</td>
 							</tr>
-							
+
 							<tr id="tr_head_3" class="hidden">
 								<th>
 									<a href="#">Heater 3<span class="caret hidden"></span></a>
@@ -267,7 +263,7 @@
 									</div>
 								</td>
 							</tr>
-							
+
 							<tr id="tr_head_4" class="hidden">
 								<th>
 									<a href="#">Heater 4<span class="caret hidden"></span></a>
@@ -295,7 +291,7 @@
 									</div>
 								</td>
 							</tr>
-							
+
 							<tr id="tr_head_5" class="hidden">
 								<th>
 									<a href="#">Heater 5<span class="caret hidden"></span></a>
@@ -323,8 +319,8 @@
 									</div>
 								</td>
 							</tr>
-              
-            <tr id="tr_head_6" class="hidden">
+
+							<tr id="tr_head_6" class="hidden">
 								<th>
 									<a href="#">Heater 6<span class="caret hidden"></span></a>
 									<span class="text-muted"></span>
@@ -351,7 +347,7 @@
 									</div>
 								</td>
 							</tr>
-							
+
 							<tr id="tr_bed">
 								<th>
 									<a href="#">Bed</a>
@@ -370,7 +366,7 @@
 								</td>
 								<td></td>
 							</tr>
-							
+
 							<tr id="tr_chamber" class="hidden">
 								<th>
 									Chamber
@@ -392,14 +388,14 @@
 						</table>
 					</div>
 				</div>
-				
+
 				<!-- Temperature Chart -->
 				<div class="hidden-xs hidden-sm col-md-3 col-lg-3" id="div_temp_chart">
 					<div class="panel panel-info panel-status">
 						<div class="panel-heading">
 							<span>Temperature Chart</span>
 						</div>
-						
+
 						<div class="panel-body panel-chart">
 							<div id="chart_temp" title="Time vs. Temperature">
 								<!-- See JS -->
@@ -407,14 +403,14 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- Machine Status -->
 				<div class="col-xs-12 col-sm-7 col-md-4 col-lg-5" id="div_status">
 					<div class="panel panel-info panel-status">
 						<div class="panel-heading">
 							<span>Machine Status</span>
 						</div>
-						
+
 						<table class="table table-bordered table-condensed table-centered-cells table-status">
 							<tr>
 								<th rowspan="2" class="th-status">Head Position</th>
@@ -428,7 +424,7 @@
 								<td id="td_z">n/a</td>
 							</tr>
 						</table>
-						
+
 						<table class="table table-bordered table-condensed table-centered-cells table-status">
 							<tr>
 								<th rowspan="2" class="th-status">
@@ -443,7 +439,7 @@
 								<th class="hidden-md hidden extr-3">D3</th>
 								<th class="hidden-md hidden extr-4">D4</th>
 								<th class="hidden-md hidden extr-5">D5</th>
-                <th class="hidden-md hidden extr-6">D6</th>
+								<th class="hidden-md hidden extr-6">D6</th>
 							</tr>
 							<tr>
 								<td id="td_extr_total" class="hidden-xs hidden-sm hidden-lg">n/a</td>
@@ -452,25 +448,27 @@
 								<td id="td_extr_3" class="hidden-md hidden extr-3">n/a</td>
 								<td id="td_extr_4" class="hidden-md hidden extr-4">n/a</td>
 								<td id="td_extr_5" class="hidden-md hidden extr-5">n/a</td>
-                <td id="td_extr_5" class="hidden-md hidden extr-6">n/a</td>
+								<td id="td_extr_6" class="hidden-md hidden extr-6">n/a</td>
 							</tr>
 						</table>
-						
+
 						<table class="table table-bordered table-condensed table-centered-cells table-status">
 							<tr>
 								<th rowspan="2" class="th-status">Sensors</th>
+								<th class="cpu-temp hidden">CPU Temp.</th>
 								<th>Z-Probe</th>
-								<th class="fan-control">Fan RPM</th>
+								<th class="fan-rpm hidden">Fan RPM</th>
 							</tr>
 							<tr>
+								<td id="td_cputemp" class="cpu-temp hidden" title="Current CPU temperature">n/a</td>
 								<td id="td_probe" title="Current Z-Probe reading on a scale between 0 and 1024">n/a</td>
-								<td id="td_fanrpm" class="fan-control" title="Current Fan RPM (needs a 4-pin PWM fan and proper wiring)">n/a</td>
+								<td id="td_fanrpm" class="fan-rpm hidden" title="Current Fan RPM (needs a 4-pin PWM fan and proper wiring)">n/a</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Content -->
 			<div class="row">
 				<!-- Sidebar -->
@@ -485,15 +483,11 @@
 						<li class="navitem navitem-macros"><a class="navlink" href="#" data-target="macros"><span class="glyphicon glyphicon-link"></span> Macros <span class="glyphicon glyphicon-refresh span-refresh-macros hidden"></span></a></li>
 					</ul>
 					<ul class="nav nav-sidebar">
-						<li class="navitem navitem-spools"><a class="navlink" href="#" data-target="spools"><span class="glyphicon glyphicon-record"></span> Spools</a></li>
-						<li class="navitem navitem-maintenance hidden"><a class="navlink" href="#" data-target="maintenance"><span class="glyphicon glyphicon-wrench"></span> Maintenance</a></li>
-					</ul>
-					<ul class="nav nav-sidebar">
 						<li class="navitem navitem-settings"><a class="navlink" href="#" data-target="settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 						<li class="navitem navitem-help hidden"><a class="navlink" href="#" data-target="help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
 					</ul>
 				</div>
-				
+
 				<!-- Page Contents -->
 				<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10" id="main_content">
 					<!-- Control Page -->
@@ -506,7 +500,7 @@
 										<span>Head Movement</span>
 										<button data-gcode="G32" class="pull-right btn btn-primary btn-xs gcode visible-lg disabled" id="btn_bed_compensation" title="Perform automatic bed compensation / calibration (G32)">Auto Bed Compensation</button>
 									</div>
-									
+
 									<div class="panel-body">
 										<div class="hidden-lg btn-group btn-group-justified" id="mobile_home_buttons">
 											<div class="btn-group" role="group"><button data-home="all" class="btn btn-primary disabled">Home All</button></div>
@@ -587,17 +581,17 @@
 										</table>
 									</div>
 								</div>
-								
-								<div class="alert alert-warning hidden" id="home_warning">
+
+								<div class="alert alert-warning hidden home-warning">
 									<span class="glyphicon glyphicon-warning-sign"></span>
 									<span id="unhomed_warning">The following axes are not homed: <strong id="unhomed_axes">X, Y, Z</strong></span>
 								</div>
-								
+
 								<div class="panel panel-default" id="panel_extrude">
 									<div class="panel-heading">
 										<span>Extruder Control</span>
 									</div>
-									
+
 									<div class="panel-body">
 										<div class="col-xs-5 no-horizontal-padding">
 											<label>Feed amount in mm:</label>
@@ -622,7 +616,7 @@
 												</label>
 											</div>
 										</div>
-										
+
 										<div class="col-xs-5">
 											<label>Feedrate in mm/sec:</label>
 											<div class="btn-group btn-group-justified" data-toggle="buttons">
@@ -643,7 +637,7 @@
 												</label>
 											</div>
 										</div>
-										
+
 										<div class="col-xs-2 no-horizontal-padding">
 											<div class="btn-group-vertical btn-group-vertical-justified">
 												<div class="btn-group">
@@ -657,20 +651,20 @@
 									</div>
 								</div>
 							</div>
-								
+
 							<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-right">
 								<div class="panel panel-default" id="panel_macro_buttons">
 									<div class="panel-heading">
 										<span>User-Defined Macros</span>
 									</div>
-									
+
 									<div class="panel-body text-center">
 										<h4 class="text-muted">Go to the Macros page to define your own actions</h4>
 										<div class="btn-group-vertical btn-group-vertical-justified"></div>
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-right">
 								<div class="panel panel-default" id="panel_control_misc">
 									<div class="panel-heading">
@@ -707,7 +701,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Print Status -->
 					<div id="page_print" class="page">
 						<div class="row row-progress hidden">
@@ -725,12 +719,22 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-3 col-lg-7 col-lg-push-2">
+								<div id="panel_webcam" class="panel panel-default hidden">
+									<div class="panel-heading">
+										<a id="a_webcam" href="#">Webcam Surveillance</a>
+										<span id="span_webcam" class="glyphicon glyphicon-menu-down"></span>
+									</div>
+									<div class="panel-body">
+										<img src="about:blank" id="img_webcam" alt="(image not available)">
+									</div>
+								</div>
+
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<span class="title">Layer Statistics</span>
+										<span>Layer Statistics</span>
 									</div>
 									<div class="panel-body panel-chart">
 										<div id="chart_print">
@@ -738,35 +742,33 @@
 										</div>
 									</div>
 								</div>
-								
-								<div class="panel panel-default" id="panel_print_info">
+
+								<div id="panel_print_info" class="panel panel-default">
 									<div class="panel-heading">
-										<span class="title">Collected Data</span>
+										<span>Collected Data</span>
 									</div>
-									
+
 									<table class="table table-bordered table-condensed">
 										<tr>
-											<th class="col-layertime hidden">Current Layer Time</th>
-											<th>Print Duration</th>
 											<th>Warm-Up Time</th>
-											<th>First Layer Time</th>
-											<th>First Layer Height</th>
+											<th>Current Layer Time</th>
+											<th>Last Layer Time</th>
+											<th>Print Duration</th>
 										</tr>
 										<tr>
-											<td class="col-layertime hidden" id="td_curr_layer">n/a</td>
-											<td id="td_print_duration">n/a</td>
 											<td id="td_warmup_time">n/a</td>
-											<td id="td_fl_time">n/a</td>
-											<td id="td_fl_height">n/a</td>
+											<td id="td_layertime">n/a</td>
+											<td id="td_last_layertime">n/a</td>
+											<td id="td_print_duration">n/a</td>
 										</tr>
 									</table>
 								</div>
-								
+
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<span class="title">Estimations</span>
+										<span>Estimations</span>
 									</div>
-									
+
 									<table class="table table-bordered table-condensed" id="table_estimations">
 										<tr>
 											<th>Based on</th>
@@ -789,11 +791,11 @@
 									</table>
 								</div>
 							</div>
-							
+
 							<div class="col-xs-6 col-sm-6 col-md-3 col-md-pull-6 col-lg-2 col-lg-pull-7 col-left">
 								<div class="panel panel-default" id="panel_print_control">
 									<div class="panel-heading">
-										<span class="title">Print Control</span>
+										<span>Print Control</span>
 									</div>
 									<div class="panel-body">
 										<div class="btn-group-justified">
@@ -804,17 +806,17 @@
 												<button class="btn btn-danger" id="btn_cancel" title="Cancel paused print (M0)">Cancel</button>
 											</div>
 										</div>
-										
+
 										<div class="checkbox fan-control disabled">
 											<label title="Enforce a predefined fan value">
 												<input type="checkbox" id="override_fan" disabled/> Override Fan Value
 											</label>
 										</div>
-										
+
 										<div class="fan-control">
 											<input id="slider_fan_print" type="text" title="Set current fan value (via M106)" disabled/>
 										</div>
-										
+
 										<div class="checkbox disabled">
 											<label title="Run M1 when the print has finished">
 												<input type="checkbox" id="auto_sleep" disabled/> Enable Auto-Sleep
@@ -822,10 +824,10 @@
 										</div>
 									</div>
 								</div>
-							
+
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<span class="title">File Information</span>
+										<span>File Information</span>
 									</div>
 									<div class="panel-body">
 										<dl>
@@ -843,22 +845,22 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-right">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<span class="title">Speed Factor</span>
+										<span>Speed Factor</span>
 									</div>
 									<div class="panel-body">
 										<input id="slider_speed" type="text" title="Set speed factor (via M220)"/>
 									</div>
 								</div>
 							</div>
-								
+
 							<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-right">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<span class="title">Extrusion Factors</span>
+										<span>Extrusion Factors</span>
 									</div>
 									<div class="panel-body">
 										<table class="table-description">
@@ -892,8 +894,8 @@
 													<input id="slider_extr_5" type="text" title="Set extrude factor override (via M221)" data-drive="4"/>
 												</td>
 											</tr>
-                      <tr class="extr-6">
-												<td>Extruder 6:</td>
+											<tr class="extr-6">
+												<td>Extruder 5:</td>
 												<td>
 													<input id="slider_extr_6" type="text" title="Set extrude factor override (via M221)" data-drive="5"/>
 												</td>
@@ -904,7 +906,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- G-Code Console -->
 					<div id="page_console" class="page">
 						<div class="row">
@@ -935,7 +937,7 @@
 								</div>
 							</form>
 						</div>
-						
+
 						<div class="row">
 							<div class="col-md-12">
 								<div class="container-fluid" id="console_log">
@@ -943,7 +945,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- G-Code Files -->
 					<div id="page_files" class="page">
 						<div class="row">
@@ -966,24 +968,26 @@
 								</table>
 
 								<h1 class="text-center text-muted">Connect to your Duet to display G-Code files</h1>
-								
+
 								<table class="table table-bordered table-files table-hover table-striped hidden" id="table_gcode_files">
 									<thead>
 										<tr>
-											<th></th>
+											<th colspan="2"></th>
+											<th class="hidden"><!-- only for HTML validation --></th>
 											<th>File Name</th>
 											<th class="hidden-xs">Size</th>
 											<th>Object Height</th>
 											<th>Layer Height</th>
-											<th>Filament Usage</th>
+											<th class="hidden-xs">Filament Usage</th>
 											<th class="hidden-xs hidden-sm">Generated by</th>
 										</tr>
 									</thead>
+									<!-- ignore other validation error; this is filled up during runtime -->
 								</table>
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Macro Files -->
 					<div id="page_macros" class="page">
 						<div class="row">
@@ -1004,86 +1008,56 @@
 										</td>
 									</tr>
 								</table>
-								
+
 								<h1 class="text-center text-muted">Connect to your Duet to display Macro files</h1>
 							</div>
-							
+
 							<div class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
 								<table class="table table-bordered table-files table-hover table-striped hidden" id="table_macro_files">
 									<thead>
 										<tr>
-											<th></th>
+											<th colspan="2"></th>
+											<th class="hidden"><!-- only for HTML validation --></th>
 											<th>File Name</th>
 											<th>Size</th>
 										</tr>
 									</thead>
+									<!-- ignore other validation error; this is filled up during runtime -->
 								</table>
 							</div>
 						</div>
 					</div> 
-					
-					<!-- Spools -->
-					<div id="page_spools" class="page">
-						<div class="row">
-							<div class="col-xs-12 col-sm-7 col-md-6 col-lg-5">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<span>Exchange Filament</span>
-									</div>
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-												<label for="input_bowden_length">Bowden Tube Length:</label>
-												<div class="input-group">
-													<input type="number" class="form-control" id="input_bowden_length" value="300" disabled>
-													<span class="input-group-addon">mm</span>
-												</div>
-											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-												<div class="btn-group-vertical btn-group-vertical-justified">
-													<div class="btn-group">
-														<button class="btn btn-danger btn-retract disabled" id="btn_unload_filament" title="Unload current filament spool"><span class="glyphicon glyphicon-arrow-up"></span> Unload Filament</button>
-													</div>
-													<div class="btn-group">
-														<button class="btn btn-success btn-extrude disabled" id="btn_load_filament" title="Load new filament spool"><span class="glyphicon glyphicon-arrow-down"></span> Load Filament</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden">
-								<h1 class="text-center text-muted">TODO: charts for each spool, per-spool values like filament total, filament printed and filament left</h1>
-							</div>
-						</div>
-					</div>
-					
-					<!-- Maintenance -->
-					<div id="page_maintenance" class="page">
-						<div class="row">
-							<div class="col-md-12">
-								<!-- TODO: maintenance reminder and bed levelling assistant -->
-							</div>
-						</div>
-					</div>
-					
+
 					<!-- Settings -->
 					<div id="page_settings" class="page">
 						<form id="frm_settings">
-							<!-- Page Selector -->
-							<ul class="nav nav-tabs">
+							<!-- Page Selector (Desktop) -->
+							<ul class="nav nav-tabs hidden-xs hidden-sm">
 								<li class="active"><a href="#page_general" data-toggle="tab">General</a></li>
-								<li><a href="#page_config" data-toggle="tab">Configuration File</a></li>
 								<li><a href="#page_listitems" data-toggle="tab">List Items</a></li>
+								<li><a href="#page_config" data-toggle="tab">Configuration File</a></li>
+								<li><a href="#page_machine" data-toggle="tab">Machine Properties</a></li>
 								<li><a href="#page_tools" data-toggle="tab">Tools</a></li>
-								<!--<li><a href="#page_advanced" data-toggle="tab">Advanced</a></li>-->
 							</ul>
-					
+
+							<!-- Page Selector (Mobile) -->
+							<ul class="nav nav-tabs visible-xs visible-sm">
+								<li class="active"><a href="#page_general" data-toggle="tab">General</a></li>
+								<li><a href="#page_listitems" data-toggle="tab">List Items</a></li>
+								<li><a href="#page_config" data-toggle="tab">Configuration File</a></li>
+								<li>
+									<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">More <span class="caret"></span></a>
+									<ul class="dropdown-menu" id="collapsed">
+										<li><a href="#page_machine" data-toggle="tab">Machine Properties</a></li>
+										<li><a href="#page_tools" data-toggle="tab">Tools</a></li>
+									</ul>
+								</li>
+							</ul>
+
 							<div class="tab-content">
 								<!-- General Settings -->
 								<div class="tab-pane row active" id="page_general">
-									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-left">
+									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-left">
 										<div class="panel panel-default">
 											<div class="panel-heading">
 												<span>Software Information</span>
@@ -1100,13 +1074,32 @@
 													</tr>
 													<tr>
 														<th>Web Interface Version:</th>
-														<td id="web_version">HTML: 1.06</td>
+														<td id="web_version">HTML: 1.11</td>
 													</tr>
 												</table>
-												<span id="copyright">Web Interface by Christian Hammacher<br/>Licensed under the terms of the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="blank">GPL v2</a></span>
+												<span>Web Interface by Christian Hammacher<br/>Licensed under the terms of the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="blank">GPL v2</a></span>
+												<br/>
+												<span id="theme_notice" class="hidden">Dark theme kindly provided by Fotomas</span>
 											</div>
 										</div>
-										
+
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<span>Webcam Integration</span>
+											</div>
+											<div class="panel-body">
+												<label for="webcam_url">Optional URL to an external Webcam:</label>
+												<input id="webcam_url" class="form-control" type="text" placeholder="(not set)" title="URL must point to an image file">
+
+												<label for="webcam_interval">Webcam Update Interval:</label>
+												<div class="input-group">
+													<input type="number" id="webcam_interval" class="form-control" title="Interval at which the webcam image on the Print Status page will be updated">
+													<span class="input-group-addon">ms</span>
+												</div>
+
+											</div>
+										</div>
+
 										<div class="panel panel-default hidden-xs hidden-sm">
 											<div class="panel-heading">
 												<span>File Upload for /sys and /www Directories</span>
@@ -1120,13 +1113,13 @@
 											</div>
 										</div>
 									</div>
-								
+
 									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 										<div class="panel panel-default">
 											<div class="panel-heading">
 												<span>Appearance and Behavior</span>
 											</div>
-											
+
 											<div class="panel-body">
 												<div class="checkbox">
 													<label title="Connect automatically to the Duet once the web interface is ready">
@@ -1136,16 +1129,6 @@
 												<div class="checkbox">
 													<label title="Use half Z movements for more accurate Z positioning">
 														<input type="checkbox" id="half_z" /> Half Z Movements
-													</label>
-												</div>
-												<div class="checkbox">
-													<label title="Log any successful G-Code in the G-Code Console">
-														<input type="checkbox" id="log_success" checked /> Log any successful G-Code
-													</label>
-												</div>
-												<div class="checkbox">
-													<label title="Convert every G-Code to Upper-Case before sending them">
-														<input type="checkbox" id="uppercase_gcode" checked /> Always Convert G-Codes to Upper-Case
 													</label>
 												</div>
 												<div class="checkbox">
@@ -1159,6 +1142,11 @@
 													</label>
 												</div>
 												<div class="checkbox">
+													<label title="Display fan RPM of a 4-pin PWM cooling fan in the sensors area">
+														<input type="checkbox" id="fan_rpm_display" checked /> Show Fan RPM in Sensors
+													</label>
+												</div>
+												<div class="checkbox">
 													<label title="Show a small panel on the Control page to toggle ATX power">
 														<input type="checkbox" id="show_atx" checked /> Show ATX Power control
 													</label>
@@ -1168,14 +1156,19 @@
 														<input type="checkbox" id="confirm_stop" /> Confirm Emergency STOP
 													</label>
 												</div>
-												
+												<div class="checkbox">
+													<label title="Use dark theme by Fotomas">
+														<input type="checkbox" id="dark_theme" /> Use dark theme
+													</label>
+												</div>
+
 												<label id="label_feedrate" for="move_feedrate">Default Move Button Feedrate:</label>
 												<div class="input-group">
 													<input type="number" id="move_feedrate" class="form-control" title="Default Feedrate for Head Movement controls" value="6000">
 													<span class="input-group-addon">mm/min</span>
 												</div>
-												
-												<label>Language:</label>
+
+												<label id="label_language">Language:</label>
 												<div class="dropdown" id="dropdown_language">
 													<button class="btn btn-default dropdown-toggle" type="button" id="btn_language" data-language="en" data-toggle="dropdown">
 														<span>English</span>
@@ -1187,43 +1180,74 @@
 												</div>
 											</div>
 										</div>
+
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<span>G-Code Handling</span>
+											</div>
+
+											<div class="panel-body">
+												<div class="checkbox">
+													<label title="Log any successful G-Code in the G-Code Console">
+														<input type="checkbox" id="log_success" checked /> Log any successful G-Code
+													</label>
+												</div>
+												<div class="checkbox">
+													<label title="Convert every G-Code to Upper-Case before sending them">
+														<input type="checkbox" id="uppercase_gcode" checked /> Always Convert G-Codes to Upper-Case
+													</label>
+												</div>
+											</div>
+										</div>
 									</div>
-									
-									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-right">
+
+									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-right">
 										<div class="panel panel-default" id="panel_ui_timing">
 											<div class="panel-heading">
 												<span>UI Timing</span>
 											</div>
-											
+
 											<div class="panel-body">
 												<label for="update_interval">Status Update Interval:</label>
 												<div class="input-group">
 													<input type="number" id="update_interval" class="form-control" title="Interval at which status updates are requested">
 													<span class="input-group-addon">ms</span>
 												</div>
-												
+
 												<label for="extended_status_interval">Extended Status Update after every:</label>
 												<div class="input-group">
 													<input type="number" id="extended_status_interval" class="form-control" title="Extended status updates are requested after each n-th status response">
 													<span class="input-group-addon">th response</span>
 												</div>
-												
-												<label for="reconnect_delay">Reconnect Delay on Halt:</label>
-												<div class="input-group">
-													<input type="number" id="reconnect_delay" class="form-control" title="Time to wait for a reconnect after an emergency stop was reported">
-													<span class="input-group-addon">ms</span>
-												</div>
-												
+
 												<label for="ajax_timeout">AJAX Timeout:</label>
 												<div class="input-group">
 													<input type="number" id="ajax_timeout" class="form-control" title="Maximum time to wait for an AJAX request">
+													<span class="input-group-addon">ms</span>
+												</div>
+
+												<label for="notification_timeout">Default Notification Timeout:</label>
+												<div class="input-group">
+													<input type="number" id="notification_timeout" class="form-control" title="Time after which default notifications are automatically closed">
+													<span class="input-group-addon">ms</span>
+												</div>
+
+												<label for="reconnect_halt_delay">Reconnect Delay on Halt:</label>
+												<div class="input-group">
+													<input type="number" id="reconnect_halt_delay" class="form-control" title="Time to wait for a reconnect after an emergency stop was reported">
+													<span class="input-group-addon">ms</span>
+												</div>
+
+												<label for="reconnect_update_delay">Reconnect Delay on Firmware Update:</label>
+												<div class="input-group">
+													<input type="number" id="reconnect_update_delay" class="form-control" title="Time to wait for a reconnect when a new firmware is about to be flashed">
 													<span class="input-group-addon">ms</span>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- List Items -->
 								<div class="tab-pane row" id="page_listitems">
 									<div class="col-md-4 col-lg-4 col-left">
@@ -1241,7 +1265,7 @@
 												</thead>
 											</table>
 										</div>
-										
+
 										<div class="panel panel-default">
 											<div class="panel-heading">
 												<span>Add new G-Code</span>
@@ -1284,13 +1308,13 @@
 														<input type="radio" name="temp_selection" value="standby">Standby Temperatures
 													</label>
 												</div>
-												
+
 												<ul class="list-group temp-list" id="ul_active_temps"></ul>
-												
+
 												<ul class="list-group temp-list hidden" id="ul_standby_temps"></ul>
 											</div>
 										</div>
-										
+
 										<div class="panel panel-default">
 											<div class="panel-heading">
 												<span>Add new Temperature</span>
@@ -1322,7 +1346,7 @@
 												<ul class="list-group temp-list" id="ul_bed_temps"></ul>
 											</div>
 										</div>
-										
+
 										<div class="panel panel-default">
 											<div class="panel-heading">
 												<span>Add new Temperature</span>
@@ -1346,14 +1370,164 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Configuration File -->
 								<div class="tab-pane row" id="page_config">
 									<div class="col-md-12" id="div_config">
 										<h1 class="text-center text-muted">Connect to your Duet to display the configuration file</h1>
+										<textarea readonly id="text_config" class="hidden"></textarea>
 									</div>
 								</div>
-								
+
+								<!-- Machine Properties -->
+								<div class="tab-pane row" id="page_machine">
+									<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<span>Drive Configuration</span>
+											</div>
+											<table class="table table-striped">
+												<tr>
+													<th>Drive</th>
+													<th>Endstop hit</th>
+													<th>Minimum</th>
+													<th>Maximum</th>
+													<th>InstantDv</th>
+													<th>Max Speed</th>
+													<th class="hidden-xs">Acceleration</th>
+													<th class="hidden-xs hidden-sm">Motor Current</th>
+												</tr>
+												<tr id="tr_drive_0">
+													<td>0</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_1">
+													<td>1</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_2">
+													<td>2</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_3">
+													<td>3</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_4">
+													<td>4</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_5">
+													<td>5</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_6">
+													<td>6</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_7">
+													<td>7</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+												<tr id="tr_drive_8">
+													<td>8</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td>n/a</td>
+													<td class="hidden-xs">n/a</td>
+													<td class="hidden-xs hidden-sm">n/a</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-right">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<span>Z-Probe</span>
+											</div>
+											<div class="panel-body">
+												<dl>
+													<dt>Type:</dt>
+													<dd id="dd_probe_type">n/a</dd>
+													<dt>Trigger Height:</dt>
+													<dd id="dd_probe_height">n/a</dd>
+													<dt>Trigger Value:</dt>
+													<dd id="dd_probe_value">n/a</dd>
+												</dl>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-right">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<span>Other</span>
+											</div>
+											<div class="panel-body">
+												<dl>
+													<dt>Geometry:</dt>
+													<dd id="dd_geometry">n/a</dd>
+													<dt>Motor Idle Current Factor:</dt>
+													<dd id="dd_idle_current">n/a</dd>
+													<dt>Motor Idle Timeout:</dt>
+													<dd id="dd_idle_timeout">n/a</dd>
+												</dl>
+
+												<button id="btn_fw_diagnostics" type="button" class="btn btn-info"><span class="glyphicon glyphicon-dashboard"></span> Firmware Diagnostics</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
 								<!-- Tools -->
 								<div class="tab-pane row" id="page_tools">
 									<div class="col-sm-12 col-md-7 col-lg-6">
@@ -1371,9 +1545,6 @@
 														<td>
 															<label>Associated Heater(s):</label>
 															<div class="btn-group btn-group-justified" data-toggle="buttons" id="check_heaters">
-																<label class="btn btn-default disabled" title="Bed">
-																	<input type="checkbox" name="tool_heaters" value="0" disabled> Bed (0)
-																</label>
 																<label class="btn btn-primary active disabled" title="Heater 1">
 																	<input type="checkbox" name="tool_heaters" value="1" checked disabled> 1
 																</label>
@@ -1388,6 +1559,9 @@
 																</label>
 																<label class="btn btn-default disabled" title="Heater 5">
 																	<input type="checkbox" name="tool_heaters" value="5" disabled> 5
+																</label>
+																<label class="btn btn-default disabled" title="Heater 6">
+																	<input type="checkbox" name="tool_heaters" value="6" disabled> 6
 																</label>
 															</div>
 														</td>
@@ -1411,6 +1585,9 @@
 																<label class="btn btn-default disabled" title="Extruder 5">
 																	<input type="checkbox" name="tool_drives" value="4" disabled> 4
 																</label>
+																<label class="btn btn-default disabled" title="Extruder 6">
+																	<input type="checkbox" name="tool_drives" value="5" disabled> 5
+																</label>
 															</div>
 														</td>
 													</tr>
@@ -1424,14 +1601,9 @@
 										</div>
 									</div>
 								</div>
-								
-								<!-- Advanced -->
-								<div class="tab-pane row" id="page_advanced">
-									<!-- TODO -->
-								</div>
 							</div>
-							
-							<div class="row">
+
+							<div class="row" id="row_save_settings">
 								<div class="col-md-12 text-center">
 									<button type="submit" class="btn btn-lg btn-primary" title="Apply new settings from this page"><span class="glyphicon glyphicon-ok"></span> Apply Settings</button>
 									<button class="btn btn-lg btn-warning" id="btn_reset_settings" title="Overwrite all saved settings with default values"><span class="glyphicon glyphicon-erase"></span> Load Factory Defaults</button>
@@ -1439,24 +1611,15 @@
 							</div>
 						</form>
 					</div>
-				
-					<!-- Help -->
-					<div id="page_help" class="page">
-						<div class="row">
-							<div class="col-md-12">
-								<!-- TODO -->
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
-			
+
 			<!-- Sidebar Continuation -->
 			<div class="row">
 				<div class="col-sm-3 col-md-2 col-lg-2 sidebar sidebar-continuation"></div>
 			</div>
 		</div>
-		
+
 		<!-- Modal dialogs -->
 		<div class="modal fade" id="modal_pass_input">
 			<div class="modal-dialog modal-md">
@@ -1480,7 +1643,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="modal fade" id="modal_confirmation">
 			<div class="modal-dialog modal-md">
 				<div class="modal-content">
@@ -1498,7 +1661,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="modal fade" id="modal_textinput">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -1521,24 +1684,7 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="modal fade" id="modal_message">
-			<div class="modal-dialog modal-md">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title"><!-- See JS--></h4>
-					</div>
-					<div class="modal-body">
-						<p></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> OK</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		
+
 		<input type="file" id="input_file_upload" class="hidden" multiple>
 		<div class="modal fade" id="modal_upload" data-backdrop="static">
 			<div class="modal-dialog modal-md">
@@ -1566,17 +1712,23 @@
 				</div>
 			</div>
 		</div>
-		
+
+		<div id="layer_tooltip"></div>
 		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="js/jquery-2.1.3.min.js"></script>
-		<script src="js/jquery.cookie.min.js"></script>
-		<script src="js/jquery.flot.min.js"></script>
-		<script src="js/jquery.flot.resize.min.js"></script>
-		<script src="js/jquery.flot.navigate.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/bootstrap-slider.min.js"></script>
-		<script src="js/interface.js"></script>
+	  ================================================== -->
+	  <!-- Placed at the end of the document so the pages load faster -->
+	  <script src="js/jquery-2.2.1.min.js"></script>
+	  <script src="js/jquery.textarea_autosize.min.js"></script>
+	  <script src="js/jquery.flot.min.js"></script>
+	  <script src="js/jquery.flot.resize.min.js"></script>
+	  <script src="js/jquery.flot.navigate.min.js"></script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <script src="js/bootstrap-notify.min.js"></script>
+	  <script src="js/bootstrap-slider.min.js"></script>
+	  <script src="js/jszip.min.js"></script>
+	  <script src="js/model.js"></script>
+	  <script src="js/viewmodel.js"></script>
 	</body>
 </html>
+<!-- vim: ts=4 sw=4
+-->

@@ -5,14 +5,14 @@ M111 S0                             ; Debug off
 
 ;M575 P1 B57600 S1			;Force internal serial port baud rate.
 
-M550 PTazMega			        ; Machine name (can be anything you like)
-;M551 Ppassword                        ; Machine password (currently not used)
-M551 P					;Disable password, not useful without SSL.
+M550 PTazStiff                      ; Machine name (can be anything you like)
+;M551 Ppassword                     ; Machine password (currently not used)
+M551 P					            ;Disable password, not useful without SSL.
 M540 P0xBE:0xEF:0xDE:0xAD:0xFE:0xED ; MAC Address
 ;*** Adjust the IP address and gateway in the following 2 lines to suit your network
 ;M552 P0.0.0.0						; IP address (0 = use DHCP)
-M552 P192.168.50.215						; IP address (0 = use DHCP)
-M554 P192.168.50.1                   ; Gateway
+M552 P192.168.1.14					; IP address (0 = use DHCP)
+M554 P192.168.1.1                   ; Gateway
 M553 P255.255.255.0                 ; Netmask
 
 M555 P2                             ; Set output to look like Marlin
@@ -21,8 +21,8 @@ G90                                 ; Send absolute coordinates...
 M83                                 ; ...but relative extruder moves
 
 ; steps/mm
-M92 X400
-M92 Y400
+M92 X100
+M92 Y100
 M92 Z400
 
 
@@ -30,20 +30,20 @@ M569 P0 S1 		;X Reverse
 M569 P1 S1 		;Y Reverse
 M569 P2 S0 		;Z Normal
 
-M906 X1750 Y1750 Z3000			; Set motor currents (mA)
+M906 X1350 Y1350 Z2000			; Set motor currents (mA)
 M906 I95				; IDLE motor current percentage (100=full)
 M84 S0					; NEVER timeout stepper motors
 M85 S0					; NEVER timeout stepper motors
 
-M201 X2750 Y2750 Z25			; Max acceleration. Tested limits: X10000 Y10000
+M201 X2750 Y2750 Z25		; Max acceleration. Tested limits: X10000 Y10000
 M566 X900 Y900				; Max jerk. Tested limits: X3500 Y3500
-M203 X6000 Y6000 Z900			; Max speed. Absolute limits are X6000 Y6000 Z2700.
+M203 X36000 Y36000 Z900		; Max speed. Absolute limits are X6000 Y6000 Z2700.
 
-M574 X1 Y1 Z2 S0	;Endstops.
+M574 X2 Y2 Z1 S0	    ;Endstops. X left, Y front, Z top
 M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
-M558 P1 X0 Y0 Z1
+M558 P1 X0 Y0 Z1 H3 F200 T5000
 ;G31 C0 P500 X0 Y0 Z1		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
@@ -110,13 +110,13 @@ M106 P1 S0 ; Part cooling fan off.
 ;Special Tool configuration.
 
 ;Laser. No heater, unused drive.
-M563 P4 D4
+;M563 P4 D4
 ;G10 P4 R-273.15 S-273.15 X69.2 Y-4.85 Z0
-M106 P0 S0 ; Laser power off.
+;M106 P0 S0 ; Laser power off.
 
 ;CNC Spindle. No heater, unused drive.
 ;M563 P5 D5
-M563 P5 D3	;Swap drive to accomodate degraded chip.
+;M563 P5 D3	;Swap drive to accomodate degraded chip.
 ;G10 P5 R-273.15 S-273.15 X-207.6 Y4.8 Z0
 
 
@@ -126,6 +126,9 @@ M563 P5 D3	;Swap drive to accomodate degraded chip.
 
 ;G31 C0.0035 P500 X40.8 Y8.7 Z1.75				;@0C
 
+;Where probe is relative to X/Y and at what Z distance the probe triggers
+;How much the trigger distance varies with temperature (C0.0035)
+;What analog value the Duet will read when the probe triggers (P500)
 G31 C0.0035 P500 X-139.2 Y8.7 Z1.325
 
 G10 P0 R80 S165 X-51.985 Y-0.48 Z0
@@ -134,12 +137,3 @@ G10 P2 R80 S165 X-96.15 Y-0.9 Z0
 G10 P3 R80 S165 X-118.45 Y-0.9 Z0
 G10 P4 R-273.15 S-273.15 X-89.1 Y-62.1 Z0
 G10 P5 R-273.15 S-273.15 X-0.35 Y-47.2 Z0
-
-
-
-
-
-
-
-
-
