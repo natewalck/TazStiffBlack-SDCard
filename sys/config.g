@@ -26,7 +26,7 @@ M92 Y100
 M92 Z400
 
 
-M569 P0 S1 		;X Reverse
+M569 P0 S0 		;X Normal
 M569 P1 S1 		;Y Reverse
 M569 P2 S0 		;Z Normal
 
@@ -39,7 +39,7 @@ M201 X2750 Y2750 Z25		; Max acceleration. Tested limits: X10000 Y10000
 M566 X900 Y900				; Max jerk. Tested limits: X3500 Y3500
 M203 X36000 Y36000 Z900		; Max speed. Absolute limits are X6000 Y6000 Z2700.
 
-M574 X2 Y2 Z1 S0	    ;Endstops. X left, Y front, Z top
+M574 X2 Y1 Z2 S1	    ;Endstops. X Left High, Y Front Low, Z Top High
 M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
