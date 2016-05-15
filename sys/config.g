@@ -43,7 +43,7 @@ M574 X2 Y1 Z2 S1	    ;Endstops. X Left High, Y Front Low, Z Top High
 M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
-M558 P1 X0 Y0 Z1 H3 F200 T5000
+M558 P1 X25 Y-17 Z1 H3 F200 T5000
 ;G31 C0 P500 X0 Y0 Z1		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
