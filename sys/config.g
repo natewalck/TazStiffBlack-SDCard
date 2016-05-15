@@ -44,11 +44,11 @@ M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
 M558 P1 X0 Y0 Z1 H3 F200 T5000  ; smart IR Z probe, used for homing Z axis only, dive height 3mm, probe speed 200mm/min, travel speed 5000mm/min
-G31 C0 P500 X23.4 Y-16 Z1.6		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
+G31 C0 P500 X23.4 Y-17 Z1.4		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
-M208 X426 Y126 Z158	; default max travel. IMPORTANT: Z travel range permits tool crashes.
+M208 X426 Y126 Z159.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
 
 M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
