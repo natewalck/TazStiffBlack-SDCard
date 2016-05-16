@@ -44,7 +44,7 @@ M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
 M558 P1 X0 Y0 Z1 H3 F200 T5000  ; smart IR Z probe, used for homing Z axis only, dive height 3mm, probe speed 200mm/min, travel speed 5000mm/min
-G31 C0 P500 X-23.4 Y-17 Z0.4		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
+G31 C0 P500 X23.4 Y-17 Z0		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
@@ -106,34 +106,15 @@ M301 H4 P45 I0.35 D100
 
 M106 P1 S0 ; Part cooling fan off.
 
-;----------
-;Special Tool configuration.
-
-;Laser. No heater, unused drive.
-;M563 P4 D4
-;G10 P4 R-273.15 S-273.15 X69.2 Y-4.85 Z0
-;M106 P0 S0 ; Laser power off.
-
-;CNC Spindle. No heater, unused drive.
-;M563 P5 D5
-;M563 P5 D3	;Swap drive to accomodate degraded chip.
-;G10 P5 R-273.15 S-273.15 X-207.6 Y4.8 Z0
-
-
-;Tool/probe definitions based on spreadsheet alignment data.
-;G31 C0 P500 X40.8 Y8.7 Z1.5					;@35C
-;G31 C0 P500 X40.8 Y8.7 Z1.675					;@120C
-
-;G31 C0.0035 P500 X40.8 Y8.7 Z1.75				;@0C
-
 ;Where probe is relative to X/Y and at what Z distance the probe triggers
 ;How much the trigger distance varies with temperature (C0.0035)
 ;What analog value the Duet will read when the probe triggers (P500)
-;G31 C0.0035 P500 X-139.2 Y8.7 Z1.325
+G31 C0 P500 X23.4 Y-17 Z0.4
 
-G10 P0 R80 S165 X0 Y0 Z0
-G10 P1 R80 S165 X0 Y0 Z0
-G10 P2 R80 S165 X0 Y0 Z0
-G10 P3 R80 S165 X0 Y0 Z0
-G10 P4 R-273.15 S-273.15 X0 Y0 Z0
-G10 P5 R-273.15 S-273.15 X0 Y0 Z0
+; Calibration data goes here
+;G10 P0 R80 S165 X0 Y0 Z0
+;G10 P1 R80 S165 X0 Y0 Z0
+;G10 P2 R80 S165 X0 Y0 Z0
+;G10 P3 R80 S165 X0 Y0 Z0
+;G10 P4 R-273.15 S-273.15 X0 Y0 Z0
+;G10 P5 R-273.15 S-273.15 X0 Y0 Z0
