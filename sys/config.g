@@ -109,7 +109,7 @@ M106 P1 S0 ; Part cooling fan off.
 ;Where probe is relative to X/Y and at what Z distance the probe triggers
 ;How much the trigger distance varies with temperature (C0.0035)
 ;What analog value the Duet will read when the probe triggers (P500)
-G31 C0 P500 X33.4 Y-17 Z0.4
+G31 C0 P500 X33.4 Y-17 Z0.5
 
 ; Calibration data goes here
 ;G10 P0 R80 S165 X0 Y0 Z0
