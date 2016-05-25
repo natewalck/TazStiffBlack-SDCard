@@ -44,7 +44,7 @@ M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
 M558 P1 X0 Y0 Z1 H3 F200 T5000  ; smart IR Z probe, used for homing Z axis only, dive height 3mm, probe speed 200mm/min, travel speed 5000mm/min
-G31 C0 P500 X23.4 Y-17 Z0		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
+G31 C0 P500 X33.4 Y-17 Z0		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
@@ -109,7 +109,7 @@ M106 P1 S0 ; Part cooling fan off.
 ;Where probe is relative to X/Y and at what Z distance the probe triggers
 ;How much the trigger distance varies with temperature (C0.0035)
 ;What analog value the Duet will read when the probe triggers (P500)
-;G31 C0 P500 X33.4 Y-17 Z0.5
+;G31 C0 P500 X33.4 Y-17 Z1.2
 ; Load probe config from a macro
 M98 P/macros/probe_config.g
 
