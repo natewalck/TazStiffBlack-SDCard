@@ -69,11 +69,10 @@ M570 S180				; hotend warmup wait time
 M305 P1 T100000 B4267 R4700 H30 L0
 
 ; Extruder Steppers.
-M906 E1750:1750:1750:1750		; Extruder motor current.
-M92 E968:965:965:965			; steps/mm, first extruder is flexystruder
-M201 E2000:2000:2000:2000		; acceleration
-;M203 E:50:50:50:50			; speed
-M203 E:2000:2000:2000:2000			; speed - allow fast retraction
+M906 E1500        ; Extruder motor current.
+M92 E968		    ; steps/mm
+M201 E2000          ; acceleration
+M203 E2000			; speed - allow fast retraction
 
 ;Extruder Stepper Direction.
 M569 P3 S0
