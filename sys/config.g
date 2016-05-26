@@ -5,7 +5,7 @@ M111 S0                             ; Debug off
 
 ;M575 P1 B57600 S1			;Force internal serial port baud rate.
 
-M550 PTazStiff                      ; Machine name (can be anything you like)
+M550 PTazStiffBlack                 ; Machine name (can be anything you like)
 ;M551 Ppassword                     ; Machine password (currently not used)
 M551 P					            ;Disable password, not useful without SSL.
 M540 P0xBE:0xEF:0xDE:0xAD:0xFE:0xED ; MAC Address
