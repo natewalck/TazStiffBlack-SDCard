@@ -25,7 +25,7 @@ M92 X100
 M92 Y100
 M92 Z400
 
-
+; Axis stepper direction
 M569 P0 S0 		;X Normal
 M569 P1 S1 		;Y Reverse
 M569 P2 S0 		;Z Normal
@@ -54,22 +54,19 @@ M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
 ;----------
 ;Heated bed configuration.
+;----------
 
 M305 P0 T100000 B3794 R4700 H30 L0	;Thermistor.
 
 ;----------
 ;Extruder Tool configuration.
+;----------
 
 M570 S180				; hotend warmup wait time
 
 ; Extruder Thermistors, hexagon hotend "104NT-4-R025H42G". The "P" parameter does NOT follow the tool numbering.
 ;Duet 0.85, 4.7k resistors.
 M305 P1 T100000 B4267 R4700 H30 L0
-;M305 P2 T100000 B4267 R4700 H30 L0
-
-;Duex 4, 1k resistors.
-;M305 P3 T100000 B4267 R1000 H37 L0
-;M305 P4 T100000 B4267 R1000 H37 L0
 
 ; Extruder Steppers.
 M906 E1750:1750:1750:1750		; Extruder motor current.
@@ -90,19 +87,6 @@ M569 P8 S0
 M563 P0 D0 H1				; tool 0, drive 0, heater 1
 M301 H1 P45 I0.35 D100			; Hexagon hotend PID settings. Periodic pulses from the Duex board necessitates extra resistance to disturbance.
 ;G10 P0 R80 S165 X-50.6 Y-38.1 Z0	; tool 0, standbyTemp 125, runTemp 165 (defaults)
-
-M563 P1 D1 H2
-M301 H2 P45 I0.35 D100
-;G10 P1 R80 S165 X-118.1 Y-15.65 Z0
-
-M563 P2 D2 H3
-M301 H3 P45 I0.35 D100
-;G10 P2 R80 S165 X-52.35 Y-139.45 Z0
-
-;M563 P3 D3 H4
-M563 P3 D5 H4	;Swap drive to accomodate degraded chip.
-M301 H4 P45 I0.35 D100
-;G10 P3 R80 S165 X-116.35 Y-136.85 Z0
 
 M106 P1 S0 ; Part cooling fan off.
 
