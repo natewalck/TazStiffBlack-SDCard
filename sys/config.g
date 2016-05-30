@@ -70,7 +70,7 @@ M305 P1 T100000 B4267 R4700 H30 L0
 
 ; Extruder Steppers.
 M906 E1500  ; Extruder motor current.
-M92 E759   ; steps/mm
+M92 E750   ; steps/mm
 M201 E2000  ; acceleration
 M203 E2000  ; speed - allow fast retraction
 
