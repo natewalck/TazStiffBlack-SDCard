@@ -11,7 +11,7 @@ M551 P					            ;Disable password, not useful without SSL.
 M540 P0xBE:0xEF:0xDE:0xAD:0xFE:0xED ; MAC Address
 ;*** Adjust the IP address and gateway in the following 2 lines to suit your network
 ;M552 P0.0.0.0						; IP address (0 = use DHCP)
-M552 P192.168.1.14					; IP address (0 = use DHCP)
+M552 P192.168.1.30					; IP address (0 = use DHCP)
 M554 P192.168.1.1                   ; Gateway
 M553 P255.255.255.0                 ; Netmask
 
