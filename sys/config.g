@@ -72,7 +72,7 @@ M305 P1 T100000 B4267 R4700 H30 L0
 M906 E1500  ; Extruder motor current.
 M92 E750   ; steps/mm
 M201 E2000  ; acceleration
-M203 E2000  ; speed - allow fast retraction
+M203 E1200  ; speed - allow fast retraction
 
 ;Extruder Stepper Direction.
 M569 P3 S0
@@ -92,7 +92,7 @@ M106 P1 S0 ; Part cooling fan off.
 ;Where probe is relative to X/Y and at what Z distance the probe triggers
 ;How much the trigger distance varies with temperature (C0.0035)
 ;What analog value the Duet will read when the probe triggers (P500)
-;G31 C0 P500 X33.4 Y-17 Z1.235
+;G31 C0 P500 X33.4 Y-17 Z1.575
 ; Load probe config from a macro
 M98 P/macros/probe_config.g
 
