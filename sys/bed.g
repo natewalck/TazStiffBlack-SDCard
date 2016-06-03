@@ -7,7 +7,7 @@ M561	;Zero existing compensation.
 
 ;Goto Center. Unlike other points, this should include compensation for probe X/Y coordinates.
 G0 Z35
-G0 X166.5 Y63
+G0 X180 Y60
 G30
 
 G0 Z35
