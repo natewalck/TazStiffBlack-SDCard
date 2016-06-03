@@ -48,7 +48,7 @@ G31 C0 P500 X33.4 Y-17 Z0		; Probe at [X/Y], no Z temperature coefficient, Z=1 w
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
-M208 X395 Y126 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
+M208 X390 Y120 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
 
 M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
