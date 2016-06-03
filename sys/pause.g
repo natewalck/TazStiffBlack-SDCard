@@ -1,5 +1,5 @@
 ; Pause macro file
-G1 E-4 F2500		; retract 4mm
+G1 E-4 F600		    ; retract 4mm
 G91					; relative moves
 G1 Z5 F5000			; raise nozzle 2mm
 G90					; absolute moves
