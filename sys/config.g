@@ -21,8 +21,8 @@ G90                                 ; Send absolute coordinates...
 M83                                 ; ...but relative extruder moves
 
 ; steps/mm
-M92 X100
-M92 Y100
+M92 X114.29
+M92 Y114.29
 M92 Z400
 
 ; Axis stepper direction
