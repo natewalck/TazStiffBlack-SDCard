@@ -11,7 +11,7 @@ M551 P					            ;Disable password, not useful without SSL.
 M540 P0xBE:0xEF:0xDE:0xAD:0xFE:0xED ; MAC Address
 ;*** Adjust the IP address and gateway in the following 2 lines to suit your network
 ;M552 P0.0.0.0						; IP address (0 = use DHCP)
-M552 P192.168.1.30					; IP address (0 = use DHCP)
+M552 P192.168.7.30					; IP address (0 = use DHCP)
 M554 P192.168.1.1                   ; Gateway
 M553 P255.255.255.0                 ; Netmask
 
@@ -44,11 +44,11 @@ M666 X0.00 Y0.00 Z0.00	;Endstop adjustments.
 
 ;Probe Defaults
 M558 P1 X0 Y0 Z1 H3 F200 T5000  ; smart IR Z probe, used for homing Z axis only, dive height 3mm, probe speed 200mm/min, travel speed 5000mm/min
-G31 C0 P500 X33.4 Y-17 Z0		; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
+G31 C0 P500 X39.5 Y-56.5 Z0	; Probe at [X/Y], no Z temperature coefficient, Z=1 when probe=500.
 
 ;M556 S78 X0 Y0 Z0         	        ; Axis compensation
 
-M208 X380 Y285 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
+M208 X365 Y240 Z147.5	; default max travel. IMPORTANT: Z travel range permits tool crashes.
 
 M106 I0			; Do not "invert" fans (S2=min, S253=full)
 
