@@ -1,9 +1,13 @@
-;Run by G32
+; bed.g
+; called to perform automatic bed compensation via G32
+;
 
-;Zsafe>=35
+;T99    ;Non-existant tool, no offset.
+; Clear any bed transform
+M561
 
-T99	;Non-existant tool, no offset.
-M561	;Zero existing compensation.
+; Home all axes
+G28
 
 ;Goto Center. Unlike other points, this should include compensation for probe X/Y coordinates.
 G0 Z35
@@ -35,5 +39,3 @@ G4 P1500
 ;Return to safe position.
 G0 Z35
 M98 P/macros/cb_center
-
-
