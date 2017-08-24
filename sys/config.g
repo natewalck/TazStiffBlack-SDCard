@@ -13,8 +13,8 @@ M208 X365 Y240 Z147.5 S0 ; Set axis maxima
 ; Endstops
 M574 X2 Y1 Z2 S1                ; Define active low and unused microswitches
 M666 X0.00 Y0.00 Z0.00          ; Endstop Adjustments
-M558 P2 X0 Y0 Z1 H3 F200 T5000  ; Set Z probe type to modulated, the axes for which it is used and the probe + travel speeds
-G31 C0 P500 X39.5 Y-56.5 Z1.680 ; Set Z probe trigger value, offset and trigger height
+M558 P1 X0 Y0 Z1 H3 F200 T5000  ; Set Z probe type to modulated, the axes for which it is used and the probe + travel speeds
+G31 C0 P500 X39.5 Y56.5 Z1.42 ; Set Z probe trigger value, offset and trigger height
 M557 X15:350 Y15:225 S20        ; Define mesh grid
 
 ; Drives
